@@ -33,13 +33,6 @@ public class WorkerController {
 
 	@GetMapping(value = "/{workerId}")
 	public ResponseEntity<Worker> findById(@PathVariable Long workerId) {
-
-//		try {
-//			Thread.sleep(3000L);
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-
 		log.info("PORT = " + env.getProperty("local.server.port"));
 		Worker worker = repository.findById(workerId).orElse(null);
 		return ResponseEntity.ok().body(worker);
