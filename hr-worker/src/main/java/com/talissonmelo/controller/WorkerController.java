@@ -3,6 +3,7 @@ package com.talissonmelo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +23,18 @@ public class WorkerController {
 
 	@Autowired
 	private Environment env;
+	
+	@Value("${test.config}")
+	private String testConfig;
 
 	@Autowired
 	private WorkerRepository repository;
+	
+	@GetMapping(value = "/configs")
+	public void getConfigs() {
+		log.info("CONFIG = " + testConfig);
+		
+	}
 
 	@GetMapping
 	public List<Worker> findAll() {
